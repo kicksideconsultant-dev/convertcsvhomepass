@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>KMZ/KML → CSV (Homepass)</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; max-width: 720px; }
+      .card { padding: 16px; border: 1px solid #ddd; border-radius: 12px; }
+      label { display:block; margin: 10px 0 6px; font-weight: 600; }
+      button { margin-top: 14px; padding: 10px 14px; border-radius: 10px; border: 0; cursor: pointer; }
+      input[type="file"] { width: 100%; }
+      .hint { color: #555; font-size: 13px; margin-top: 10px; line-height: 1.4; }
+    </style>
+  </head>
+  <body>
+    <h2>KMZ/KML → CSV Homepass + Nama Jalan + Boundary</h2>
+    <div class="card">
+      <form action="/convert" method="post" enctype="multipart/form-data">
+        <label>Upload file (.kmz / .kml)</label>
+        <input type="file" name="file" accept=".kmz,.kml" required />
+
+        <label><input type="checkbox" name="with_geocode" value="true" checked /> Tambahkan nama jalan (reverse geocoding)</label>
+
+        <button type="submit">Convert & Download CSV</button>
+      </form>
+
+      <div class="hint">
+        Catatan:
+        <ul>
+          <li>Homepass di luar boundary → kolom <b>boundary</b> kosong (NULL).</li>
+          <li>Nama jalan menggunakan pihak ketiga (OpenStreetMap Nominatim). Ada cache agar lebih cepat.</li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
